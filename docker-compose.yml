@@ -1,0 +1,26 @@
+services:
+  us:
+    build:
+      context: ./US
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - fs
+      - as
+
+  fs:
+    build:
+      context: ./FS
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    depends_on:
+      - as
+
+  as:
+    build:
+      context: ./AS
+      dockerfile: Dockerfile
+    ports:
+      - "53533:53533"
